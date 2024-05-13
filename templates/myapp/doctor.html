@@ -1,0 +1,65 @@
+{% extends 'myapp/doctor_base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container px-6 py-4 mx-auto grid">
+ <div class="relative hidden w-12 h-9 mr-4 rounded-full md:block">
+      <img
+        class="object-cover w-full h-full rounded-full"
+        src="{% static 'img/医生.png' %}"
+      />
+   </div>
+  <div class="bg-white rounded-lg shadow-xs dark:bg-gray-800" style="width: 800px; height: 45px; position: relative; top: 10px; left: 30px;">
+    <h3 class="px-4 py-3 text-l font-semibold text-gray-700 dark:text-gray-200">
+                      你好，我是您的咨询助手，很高兴为您服务！
+    </h3>
+  </div>
+    <div class="mt-6 relative hidden w-12 h-9 mr-4 rounded-full md:block" style="position: relative;left: 1150px;">
+      <img
+        class="object-cover w-full h-full rounded-full"
+        src="{% static 'img/用户.png' %}"
+      />
+   </div>
+  <div class="bg-white rounded-lg shadow-xs dark:bg-gray-800" style="width: 800px; height: 45px; position: relative; top: 10px; left: 365px;">
+
+    <h3 class="px-4 py-3 text-l font-semibold text-gray-700 dark:text-gray-200">
+          你好，我刚刚测试了基于遗传风险的糖尿病检测系统说我患病了，我该怎么办？
+    </h3>
+  </div>
+  <div class="mt-6 relative hidden w-12 h-9 mr-4 rounded-full md:block">
+      <img
+        class="object-cover w-full h-full rounded-full"
+        src="{% static 'img/医生.png' %}"
+      />
+   </div>
+  <div class="bg-white rounded-lg shadow-xs dark:bg-gray-800" style="width: 800px; height: 70px; position: relative; top: 10px; left: 30px;">
+
+    <h3 class="px-4 py-3 text-l font-semibold text-gray-700 dark:text-gray-200">
+          请详细描述病情（具体症状、患病时长、用药情况等），<br>以便我为您找到合适的医生。
+    </h3>
+  </div>
+    <div class="mt-6 relative hidden w-12 h-9 mr-4 rounded-full md:block" style="position: relative;left: 1150px;">
+      <img
+        class="object-cover w-full h-full rounded-full"
+        src="{% static 'img/用户.png' %}"
+      />
+   </div>
+  <div class="bg-white rounded-lg shadow-xs dark:bg-gray-800" style="width: 800px; height: 45px; position: relative; top: 10px; left: 365px;">
+
+    <h3 class="px-4 py-3 text-l font-semibold text-gray-700 dark:text-gray-200">
+          等待输入中……
+    </h3>
+  </div>
+
+  <div class="px-4" style=" position: absolute; bottom: 40px;">
+    <input type="text" style="width: 1050px;height: 35px;"
+    class=" border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
+   >
+    <button
+                        class="px-4 py-1 text-l text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                        >发送</button>
+  </div>
+
+
+ </div>
+{% endblock %}

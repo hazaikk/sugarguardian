@@ -1,0 +1,120 @@
+{% extends 'myapp/visual_base.html' %}
+
+{% block content %}
+
+<div class="container px-6 mx-auto grid">
+
+    <br><br>
+
+     <div class="grid gap-6 mb-8 md:grid-cols-2">
+
+              <!-- Lines chart -->
+              <div
+                class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+              >
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                  Lines
+                </h4>
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <div
+                  class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
+                >
+                  <!-- Chart legend -->
+                     <canvas id="line"></canvas>
+                        <script>
+                        const date1 = {{ date|safe }};
+                        const ssy = {{ ssy|safe }};
+                        const szy = {{ szy|safe }};
+                     const lineConfig = {
+                      type: 'line',
+                      data: {
+                        labels: date1,
+                        datasets: [
+                          {
+                            label: '收缩压',
+                            backgroundColor: '#0694a2',
+                            borderColor: '#0694a2',
+                            data: ssy,
+                            fill: false,
+                          },
+                          {
+                            label: '舒张压',
+                            fill: false,
+
+                            backgroundColor: '#7e3af2',
+                            borderColor: '#7e3af2',
+                            data: szy,
+                          },
+                        ],
+                      },
+
+                    };
+
+                    const lineCtx = document.getElementById('line');
+                    window.myLine = new Chart(lineCtx, lineConfig);
+                </script>
+                </div>
+              </div>
+              <!-- Bars chart -->
+              <div
+                class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+              >
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                  Bars
+                </h4>
+                <canvas id="bars"></canvas>
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                  <script>
+                    const date2 = {{ date|safe }};
+                    const heart = {{ heart|safe }};
+                    const bl = {{ bl|safe }};
+                    const bg = {{ bg|safe }};
+                    const barConfig = {
+                      type: 'bar',
+                      data: {
+                        labels: date2,
+                        datasets: [
+                          {
+                            label: '心率',
+                            backgroundColor: '#0694a2',
+                            // borderColor: window.chartColors.red,
+                            borderWidth: 1,
+                            data: heart,
+                          },
+                          {
+                            label: '总胆固醇',
+                            backgroundColor: '#7e3af2',
+                            // borderColor: window.chartColors.blue,
+                            borderWidth: 1,
+                            data: bl,
+                          },
+                          {
+                            label: '血糖',
+                            backgroundColor: '#1c64f2',
+                            // borderColor: window.chartColors.blue,
+                            borderWidth: 1,
+                            data: bg,
+                          },
+                        ],
+                      },
+                      options: {
+                        responsive: true,
+                        legend: {
+                          display: false,
+                        },
+                      },
+                    };
+                    const barsCtx = document.getElementById('bars');
+                    window.myBar = new Chart(barsCtx, barConfig);
+
+                  </script>
+                <div
+                  class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
+                >
+
+                </div>
+              </div>
+
+     </div>
+</div>
+{% endblock %}

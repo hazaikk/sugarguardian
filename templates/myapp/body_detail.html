@@ -1,0 +1,245 @@
+{% extends 'myapp/data_base.html' %}
+
+{% block content %}
+ <div class="container px-6 mx-auto">
+            <h2
+              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+            >
+              积硅步至千里，积小流成江海
+            </h2>
+            <!-- CTA -->
+            <a href="/body/1" class="mb-4 font-medium text-purple-600 dark:text-purple-400 hover:underline">
+              返回
+            </a><br><br>
+
+            <!-- 招聘列表 -->
+
+            <div class="w-full overflow-x-auto rounded-lg shadow-xs bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                  {% if data %}
+                 <div class="px-4 py-2">
+                     <h2 class=" text-lg font-semibold text-gray-700 dark:text-gray-200">体重指数:{{data.bmi}}</h2>
+                          <span class="text-sm text-gray-500 dark:text-gray-400" >
+                              正常范围：18.5 - 24.9
+                          </span>
+                     <h2 class=" text-lg font-semibold text-gray-700 dark:text-gray-200">心率(次/分钟):{{data.heart}}</h2>
+                          <span class="text-sm text-gray-500 dark:text-gray-400" >
+                              正常范围：60 - 100 次/分钟
+                          </span>
+                     <h2 class=" text-lg font-semibold text-gray-700 dark:text-gray-200">收缩压(mmHg):{{data.ssy}}</h2>
+                          <span class="text-sm text-gray-500 dark:text-gray-400" >
+                              正常范围：小于120 mmHg
+                          </span>
+                     <h2 class=" text-lg font-semibold text-gray-700 dark:text-gray-200">舒张压(mmHg):{{data.szy}}</h2>
+                          <span class="text-sm text-gray-500 dark:text-gray-400" >
+                              正常范围：小于80 mmHg
+                          </span>
+                     <h2 class=" text-lg font-semibold text-gray-700 dark:text-gray-200">总胆固醇(mg/dL):{{data.bl}}</h2>
+                          <span class="text-sm text-gray-500 dark:text-gray-400" >
+                              正常范围：小于200 mg/dL
+                          </span>
+                     <h2 class=" text-lg font-semibold text-gray-700 dark:text-gray-200">血糖(mg/dL):{{data.bg}}</h2>
+                          <span class="text-sm text-gray-500 dark:text-gray-400" >
+                              正常范围：空腹血糖小于100 mg/dL
+                          </span>
+                     <h2 class=" text-lg font-semibold text-gray-700 dark:text-gray-200">骨密度(T值):{{data.bone}}</h2>
+                          <span class="text-sm text-gray-500 dark:text-gray-400" >
+                              正常范围：T值大于-1
+                          </span>
+                     <h2 class=" text-lg font-semibold text-gray-700 dark:text-gray-200">肌肉质量(%):{{data.muscle}}</h2>
+                          <span class="text-sm text-gray-500 dark:text-gray-400" >
+                              正常范围：男性为40-60%，女性为30-40%
+                          </span>
+                     <h2 class=" text-lg font-semibold text-gray-700 dark:text-gray-200">日记:</h2>
+                          <span class="text-l font-semibold text-gray-700 dark:text-gray-200 border border-gray-500 hover:border-gray-500 focus:border-gray-500  " >
+                              {% if data.diary %}
+                              {{data.diary}}
+                              {% else %}
+                              无
+                              {% endif %}
+                          </span>
+                     {% endif %}
+
+                     <h2 class=" text-lg font-semibold text-gray-700 dark:text-gray-200">根据你目前的状况我们得到以下基本判断：</h2>
+                     <p>
+                         {% if data.bmi > 24.9 or data.ssy > 120 or data.szy > 80 or data.bl > 200 or data.bg > 24.9 or data.heart > 24.9 or data.bone < -1 or data.muscle < 33%}
+                         {% if data.bmi > 24.9 %}
+                         <h3 class=" text-l font-semibold text-gray-700 dark:text-gray-200">
+                         BMI超过24.9<br>
+                         •	饮食建议：控制热量摄入，减少高糖和高脂肪食物，增加蔬菜、水果和全谷物的摄入。<br>
+                         •	锻炼建议：进行有氧运动，如快走、跑步、游泳等，每周至少150分钟。<br>
+                        </h3>
+                         {% endif %}
+                         {% if data.ssy > 120 %}
+                         <h3 class=" text-l font-semibold text-gray-700 dark:text-gray-200">
+                         收缩压超过120 mmHg<br>
+                         •	饮食建议：减少钠的摄入，多食用富含钾、镁和纤维的食物，如水果、蔬菜、全谷物和低脂奶制品。<br>
+                         •	锻炼建议：进行有氧运动和力量训练，如步行、跑步、瑜伽和举重等。<br>
+                        </h3>
+                         {% elif data.szy > 80 %}
+                         <h3 class=" text-l font-semibold text-gray-700 dark:text-gray-200">
+                         舒张压超过80 mmHg<br>
+                         •	饮食建议：减少钠的摄入，多食用富含钾、镁和纤维的食物，如水果、蔬菜、全谷物和低脂奶制品。<br>
+                         •	锻炼建议：进行有氧运动和力量训练，如步行、跑步、瑜伽和举重等。<br>
+                        </h3>
+                         {% endif %}
+                         {% if data.bl > 200 %}
+                         <h3 class=" text-l font-semibold text-gray-700 dark:text-gray-200">
+                         总胆固醇超过200 mg/dL<br>
+                         •	饮食建议：减少饱和脂肪和膳食胆固醇的摄入，增加不饱和脂肪和富含Omega-3脂肪酸的食物，如鱼类、坚果和橄榄油。<br>
+                         •	锻炼建议：进行有氧运动，如快走、游泳和骑自行车等。<br>
+                        </h3>
+                         {% endif %}
+                         {% if data.bg > 24.9 %}
+                         <h3 class=" text-l font-semibold text-gray-700 dark:text-gray-200">
+                         空腹血糖超过100 mg/dL<br>
+                         •	饮食建议：控制碳水化合物的摄入，选择低GI（血糖指数）的食物，如全谷物、蔬菜和豆类。 <br>
+                         •	锻炼建议：进行有氧运动和间歇训练，如快走、慢跑、跳绳等。<br>
+                        </h3>
+                         {% endif %}
+                         {% if data.heart > 24.9 %}
+                         <h3 class=" text-l font-semibold text-gray-700 dark:text-gray-200">
+                         心率超过100 次/分钟<br>
+                         •	饮食建议：避免过多的咖啡因和刺激性食物，如巧克力和辛辣食品。<br>
+                         •	锻炼建议：进行心血管锻炼，如快走、游泳和有氧运动。<br>
+                        </h3>
+                         {% endif %}
+                         {% if data.bone < -1 %}
+                         <h3 class=" text-l font-semibold text-gray-700 dark:text-gray-200">
+                         骨密度T值小于-1<br>
+                         •	饮食建议：增加钙和维生素D的摄入，食用富含钙的食物，如奶制品、豆类、鱼类和绿叶蔬菜。<br>
+                         •	锻炼建议：进行重力承载的锻炼，如快走、跳绳、舞蹈和举重等。<br>
+                        </h3>
+                         {% endif %}
+                         {% if data.muscle < 33 %}
+                         <h3 class=" text-l font-semibold text-gray-700 dark:text-gray-200">
+                         肌肉质量低于正常范围<br>
+                         •	饮食建议：增加蛋白质的摄入，食用富含蛋白质的食物，如瘦肉、鱼类、禽类、豆类和乳制品。<br>
+                         •	锻炼建议：进行重力训练，如举重、俯卧撑和深蹲等，以增加肌肉质量。<br>
+                        </h3>
+                         {% endif %}
+                     {% else %}
+                     <h3 class=" text-l font-semibold text-gray-700 dark:text-gray-200">
+                         你目前的身体状况良好，但是也不要暴饮暴食，过度熬夜，记得锻炼，身体是革命的本钱
+                     </h3>
+
+                     </p>
+                    {% endif %}
+
+
+            </div></div>
+
+
+            <!-- Cards -->
+            <div class="grid gap-6 mt-8 md:grid-cols-2 xl:grid-cols-4">
+              <!-- Card -->
+              <div
+                class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+              >
+                <div
+                  class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p
+                    class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+                  >
+                    Total clients
+                  </p>
+                  <p
+                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+                  >
+                    6389
+                  </p>
+                </div>
+              </div>
+              <!-- Card -->
+              <div
+                class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+              >
+                <div
+                  class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p
+                    class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+                  >
+                    Account balance
+                  </p>
+                  <p
+                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+                  >
+                    $ 46,760.89
+                  </p>
+                </div>
+              </div>
+              <!-- Card -->
+              <div
+                class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+              >
+                <div
+                  class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p
+                    class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+                  >
+                    New sales
+                  </p>
+                  <p
+                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+                  >
+                    376
+                  </p>
+                </div>
+              </div>
+              <!-- Card -->
+              <div
+                class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+              >
+                <div
+                  class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p
+                    class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+                  >
+                    Pending contacts
+                  </p>
+                  <p
+                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+                  >
+                    35
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+{% endblock %}

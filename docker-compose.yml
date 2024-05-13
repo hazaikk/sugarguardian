@@ -1,0 +1,39 @@
+version: "3"
+services:
+  app:
+    restart: always
+    build: ./
+#    command: bash -c "pip install -r requirements.txt  && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "gunicorn  --timeout=30 --bind :8000 --workers=4 sugarguardian.wsgi:application" # &&  python manage.py runserver 0.0.0.0:8000
+#    command: bash -c "python manage.py collectstatic --no-input && gunicorn  --timeout=30 --bind :8000 --workers=4 sugarguardian.wsgi:application"
+
+
+    volumes:
+      - .:/code
+      - static_volumes:/code/static
+    ports:
+      - "8000:8000"
+    networks:
+      - web_network
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - static_volumes:/code/static  # 添加卷
+    depends_on:
+      - app
+    networks:
+      - web_network
+
+# 设置网络
+networks:
+  web_network:
+    driver: bridge
+
+# 设置卷
+volumes:
+  static_volumes:

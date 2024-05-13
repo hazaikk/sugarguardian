@@ -1,0 +1,26 @@
+{%  block content %}
+{% if user.is_authenticated %}
+<a href="{% url 'myapp:profile_update' %}">更新信息</a> | <a href="{% url 'account_email' %}">更改邮箱</a>  | <a href="{% url 'account_change_password' %}">修改密码</a> |
+<a href="{% url 'account_logout' %}">退出登录</a>
+{% endif  %}
+<p>你好,{{ user }}！</p>
+
+<div class="form_container">
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-item">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <div class="button-submit">
+            <input type="submit" value="Update"/>
+        </div>
+    </form>
+
+</div>
+{%  endblock %}

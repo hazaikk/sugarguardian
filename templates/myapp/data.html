@@ -1,0 +1,147 @@
+{% extends 'myapp/data_base.html' %}
+
+{% block content %}
+<div class="container px-6 mt-4 mx-auto">
+
+            <!-- CTA -->
+            <br>
+            <!-- 招聘列表 -->
+
+            <div class="w-full overflow-x-auto rounded-lg shadow-xs bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+
+                 <div class="px-2 py-2">
+                   <form method="post">
+                       {% csrf_token %}
+                       <div class="form-group py-2 text-lg font-semibold text-gray-700 dark:text-gray-200">
+                      <p class="px-4 py-2">
+                           <label for="id_bmi">体重指数:</label>
+                        <input type="text" name="bmi" maxlength="7" required id="id_bmi"
+                         class="border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
+                        ><br>
+                          <span class="text-sm text-gray-500 dark:text-gray-400" style="position:relative;left: 95px;">
+                              正常范围：18.5 - 24.9
+                          </span>
+                      </p>
+
+                      <p class="px-4 py-2">
+                        <label for="id_heart">心率(次/分钟):</label>
+                        <input type="text" name="heart" maxlength="7" required id="id_heart"
+                          class="border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
+                        ><br>
+
+                          <span class="text-sm text-gray-500 dark:text-gray-400" style="position:relative;left: 135px;">
+                              正常范围：60 - 100 次/分钟
+                          </span>
+
+
+                      </p>
+
+
+                      <p class="px-4 py-2">
+                        <label for="id_ssy">收缩压(mmHg):</label>
+                        <input type="text" name="ssy" maxlength="7" required id="id_ssy"
+                         class="border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
+                        ><br>
+
+                          <span class="text-sm text-gray-500 dark:text-gray-400" style="position:relative;left: 150px;">
+                              正常范围：小于120 mmHg
+                          </span>
+
+
+                      </p>
+
+
+                      <p class="px-4 py-2">
+                        <label for="id_szy">舒张压(mmHg):</label>
+                        <input type="text" name="szy" maxlength="7" required id="id_szy"
+                         class="border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
+                            ><br>
+
+                          <span class="text-sm text-gray-500 dark:text-gray-400" style="position:relative;left: 150px;">
+                              正常范围：小于80 mmHg
+                          </span>
+
+
+                      </p>
+
+
+                      <p class="px-4 py-2">
+                        <label for="id_bl">总胆固醇(mg/dL):</label>
+                        <input type="text" name="bl" maxlength="7" required id="id_bl"
+                          class="border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
+                            ><br>
+
+                          <span class="text-sm text-gray-500 dark:text-gray-400" style="position:relative;left: 160px;">
+                              正常范围：小于200 mg/dL
+                          </span>
+
+
+                      </p>
+
+
+                      <p class="px-4 py-2">
+                        <label for="id_bg">血糖(mg/dL):</label>
+                        <input type="text" name="bg" maxlength="7" required id="id_bg"
+                          class="border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
+                            ><br>
+
+                          <span class="text-sm text-gray-500 dark:text-gray-400" style="position:relative;left: 125px;">
+                              正常范围：空腹血糖小于100 mg/dL
+                          </span>
+
+
+                      </p>
+
+
+                      <p class="px-4 py-2">
+                        <label for="id_bone">骨密度(T值):</label>
+                        <input type="text" name="bone" maxlength="7" required id="id_bone"
+                          class="border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
+                            ><br>
+
+                          <span class="text-sm text-gray-500 dark:text-gray-400" style="position:relative;left: 120px;">
+                              正常范围：T值大于-1
+                          </span>
+
+
+                      </p>
+
+
+                      <p class="px-4 py-2">
+                        <label for="id_muscle">肌肉质量(%):</label>
+                        <input type="text" name="muscle" maxlength="7" required id="id_muscle"
+                          class="border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
+                            ><br>
+
+                          <span class="text-sm text-gray-500 dark:text-gray-400" style="position:relative;left: 120px;">
+                              正常范围：男性为40-60%，女性为30-40%
+                          </span>
+
+
+                      </p>
+
+
+                      <p class="px-4 py-2">
+                        <label for="id_diary">日记:</label><br>
+                        <textarea name="diary" cols="40" rows="10" maxlength="1024" id="id_diary" style="position:relative;left: 20px;"
+                          class="border mx-2 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
+                            >
+                    </textarea>
+                      </p>
+                     </div>
+                       <hr>
+                       <button
+                        class="px-4 py-2 mt-1 text-xl text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                        style="float:right" type="submit" value="提交">提交</button>
+                     </form>
+
+
+            </div></div>
+            <!-- Cards -->
+            <div class="grid gap-6 mt-8 md:grid-cols-2 xl:grid-cols-4">
+                <br><br>
+            </div>
+
+          </div>
+
+{% endblock %}
